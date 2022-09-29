@@ -50,7 +50,7 @@ class DatabaseFileStorage(Storage):
     def _get_unique_filename(self, model_cls, filename_field, filename):
         final_name = filename
 
-        if ('.' in filename.rsplit(os.sep, 1)[-1]):
+        if ('.' in filename.rsplit('/', 1)[-1]):
             stem, extension = final_name.rsplit('.', 1)
         else:
             stem, extension = (final_name, '')
@@ -71,10 +71,10 @@ class DatabaseFileStorage(Storage):
             (
                 model_class_path,
                 content_field,
-                filename_field,
                 mimetype_field,
+                filename_field,
                 filename
-            ) = name.split(os.sep)
+            ) = name.split('/')
         except ValueError:
             raise NameException(
                 'Wrong name format. Got {} ; should be {}'.format(
@@ -90,9 +90,6 @@ class DatabaseFileStorage(Storage):
 
     def _open(self, name, mode='rb'):
         assert mode[0] in 'rwab'
-
-        if os.sep != '/':  # Windows fix (see a6d4707) # pragma: no cover
-            name = name.replace('/', os.sep)
 
         storage_attrs = self._get_storage_attributes(name)
         model_class_path = storage_attrs['model_class_path']
@@ -139,8 +136,6 @@ class DatabaseFileStorage(Storage):
         return new_filename
 
     def delete(self, name):
-        if os.sep != '/':  # Windows fix (see a6d4707) # pragma: no cover
-            name = name.replace('/', os.sep)
         storage_attrs = self._get_storage_attributes(name)
         model_class_path = storage_attrs['model_class_path']
         filename_field = storage_attrs['filename_field']
