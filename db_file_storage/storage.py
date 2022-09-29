@@ -159,7 +159,7 @@ class DatabaseFileStorage(Storage):
         ).exists()
 
     def url(self, name):
-        _url = reverse('db_file_storage.download_file')
+        _url = reverse('db_file_storage.get_file')
         return _url + '?' + urlencode({'name': name})
 
 
