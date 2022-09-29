@@ -1,11 +1,11 @@
 # project
 from . import views
-from .compat import url
+from django.urls import path
 
 
 urlpatterns = [
-    url(r'^download/', views.get_file, {'add_attachment_headers': True},
+    path('download/', views.get_file, {'add_attachment_headers': True},
         name='db_file_storage.download_file'),
-    url(r'^get/', views.get_file, {'add_attachment_headers': False},
+    path('get/', views.get_file, {'add_attachment_headers': False},
         name='db_file_storage.get_file')
 ]
