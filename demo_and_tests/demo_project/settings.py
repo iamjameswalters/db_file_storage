@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # third party
     'db_file_storage',
-    'django_nose',
     # project
     'form_wizard_example',
     'model_filefields_example',
@@ -121,5 +120,3 @@ STATIC_URL = '/static/'
 DEFAULT_FILE_STORAGE = 'db_file_storage.storage.DatabaseFileStorage'
 
 TEST_FILES_DIR = os.path.join(BASE_DIR, 'files_for_testing')
-
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

@@ -1,5 +1,5 @@
 # django
-from django.conf.urls import include, url
+from db_file_storage.compat import include, url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 
