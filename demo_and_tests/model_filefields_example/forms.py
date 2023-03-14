@@ -1,6 +1,5 @@
 # django
 from django import forms
-from django.contrib.admin.forms import forms as adminforms
 # third party
 from db_file_storage.form_widgets import DBClearableFileInput, \
     DBAdminClearableFileInput
@@ -19,7 +18,7 @@ class BookForm(forms.ModelForm):
         }
 
 
-class BookAdminForm(adminforms.ModelForm):
+class BookAdminForm(forms.ModelForm):
     class Meta(object):
         model = Book
         exclude = []
